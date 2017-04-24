@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
     public float speed = 6f;
-    public float jumpSpeed = 6f;
+    CharacterController characterController;
+    public float jumpSpeed = 600f;
+    private float gravity = 5f;
+    private float jumpforce = 10f;
 
     private Vector3 movement;
     Rigidbody playerRigidbody;
@@ -14,15 +18,32 @@ public class PlayerMovement : MonoBehaviour {
     void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
     }
 
-    void FixedUpdate ()
+    void FixedUpdate()
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-      
-        Move(h, v,0);
+        movement.Set(h, 0, v);
+        if (Input.GetButtonDown("Jump"))
+        {
+            movement.y = jumpSpeed;
+        }
+        //Move(h, v, jumpSpeed);
+        //}
+        // Apply gravity
+
+        movement.y -= gravity * Time.deltaTime;
+
+        // Move the controller
+        //characterController.Move(movement * Time.deltaTime);
+
+        movement = movement.normalized * speed * Time.deltaTime;
+
+        playerRigidbody.MovePosition(transform.position + movement);
+
     }
 
     void Move(float h, float v, float j)
@@ -31,9 +52,6 @@ public class PlayerMovement : MonoBehaviour {
         movement = movement.normalized * speed * Time.deltaTime;
 
         playerRigidbody.MovePosition(transform.position + movement);
-        if (Input.GetAxisRaw("Jump")>0) 
-        {
-            playerRigidbody.AddForce(Vector3.up*jumpSpeed);
-        }
+
     }
 }
