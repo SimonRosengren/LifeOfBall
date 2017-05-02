@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
 
     public float speed = 6f;
+<<<<<<< HEAD
 <<<<<<< HEAD
     CharacterController characterController;
     public float jumpSpeed = 600f;
@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     bool isGrounded;
 >>>>>>> origin/master
+=======
+    public float jumpSpeed = 6f;
+>>>>>>> parent of 43c4c16... #2 BallMovement
 
     private Vector3 movement;
     Rigidbody playerRigidbody;
@@ -27,17 +30,21 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody>();
 <<<<<<< HEAD
+<<<<<<< HEAD
         characterController = GetComponent<CharacterController>();
 =======
         cam = Camera.main;
         camTransform = cam.transform;
 
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 43c4c16... #2 BallMovement
     }
 
-    void FixedUpdate()
+    void FixedUpdate ()
     {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         movement.Set(h, 0, v);
         if (Input.GetButtonDown("Jump"))
@@ -62,6 +69,10 @@ public class PlayerMovement : MonoBehaviour
         float v = Input.GetAxis("Vertical");
         Move(h, 0, v);
 >>>>>>> origin/master
+=======
+      
+        Move(h, v,0);
+>>>>>>> parent of 43c4c16... #2 BallMovement
     }
 
     void Move(float h, float j, float v)
@@ -76,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
 <<<<<<< HEAD
         playerRigidbody.MovePosition(transform.position + movement);
+<<<<<<< HEAD
 
 =======
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -98,5 +110,11 @@ public class PlayerMovement : MonoBehaviour
 =======
 
 >>>>>>> origin/master
+=======
+        if (Input.GetAxisRaw("Jump")>0) 
+        {
+            playerRigidbody.AddForce(Vector3.up*jumpSpeed);
+        }
+>>>>>>> parent of 43c4c16... #2 BallMovement
     }
 }
