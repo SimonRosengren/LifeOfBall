@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             playerRigidbody.AddForce(0, jumpSpeed, 0);
+            isGrounded = false;
         }
     }
 
@@ -46,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
         }
-        else
-            isGrounded = false;
+
     }
 }
